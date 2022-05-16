@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  blackstarWear
+//  bswearDegreeProject
 //
-//  Created by gleba on 16.05.2022.
+//  Created by gleba on 15.05.2022.
 //
 
 import UIKit
