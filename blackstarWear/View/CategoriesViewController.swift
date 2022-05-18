@@ -8,21 +8,31 @@
 import UIKit
 
 class CategoriesViewController: UIViewController {
-    let parser = CategoriesViewModel()
+    let categoriesVM = CategoriesViewModel()
     var categories: Results?
+    var keys = [String]()
     @IBOutlet var categoriesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        parser.getData(completition: {result in
+        categoriesVM.getData(completition: {result in
             self.categories = result
-            print(self.categories?["0"]?.name)
+            for i in self.categories!.keys.reversed(){
+                self.keys.append(i)
+            }
             self.categoriesTableView.reloadData()
         })
         
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell, let index = categoriesTableView.indexPath(for: cell){
+            let key = self.keys[index.row]
+            let model = categories?[key]?.subcategories
+            if let vc = segue.destination as? SubCategoriesViewController, segue.identifier == "showSub"{
+                vc.subCategories = model
+            }
+        }
+    }
     
-
-
 }
 extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,10 +41,11 @@ extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoriesTableViewCell
-//        let index = categories?.index(categories!.startIndex , offsetBy: indexPath.row)
-//        cell.categoryName = categories![index]?.name
-        print(type(of: categories))
-//        cell.categoryName = categories[myKey].name
+        let key = self.keys[indexPath.row]
+        cell.categoryName.text = categories?[key]?.name
+        DispatchQueue.main.async {
+//            cell.categoryImage.image = self.parser.getImage(urlStr: self.categories?[key]?.iconImage ?? "")
+        }
         return cell
     }
     

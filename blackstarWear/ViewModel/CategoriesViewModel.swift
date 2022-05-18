@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 class CategoriesViewModel{
     func getData(completition: @escaping (Results)->Void){
         var categoriesResults:Results?
@@ -29,4 +30,15 @@ class CategoriesViewModel{
         }
         task.resume()
     }
+    func getImage(urlStr:String) -> UIImage{
+        var image = UIImage()
+        let url = URL(string: "\(urlStr)")
+        if let data = try? Data(contentsOf: url!) {
+            image = UIImage(data: data) ?? UIImage()
+        }
+        
+        return image
+    }
+    
 }
+
