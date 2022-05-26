@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 // MARK: - CategoriesModel
 class CategoriesModel: Codable {
     let name: String
@@ -24,13 +25,19 @@ class CategoriesModel: Codable {
 }
 
 enum SortOrder: Codable {
-    case integer(Int)
+//    case integer(Int)
     case string(String)
-
+    var stringValue: String?{
+        switch self{
+        case .string(let s):
+            return s
+        }
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let x = try? container.decode(Int.self) {
-            self = .integer(x)
+            self = .string("\(x)")
             return
         }
         if let x = try? container.decode(String.self) {
@@ -43,8 +50,6 @@ enum SortOrder: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .integer(let x):
-            try container.encode(x)
         case .string(let x):
             try container.encode(x)
         }

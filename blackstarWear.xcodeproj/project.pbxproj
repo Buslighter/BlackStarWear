@@ -27,6 +27,8 @@
 		158B7B602834346A0054A389 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B5F2834346A0054A389 /* ItemsViewController.swift */; };
 		158B7B62283434790054A389 /* ItemInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B61283434790054A389 /* ItemInfoViewController.swift */; };
 		158B7B64283434B90054A389 /* ItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B63283434B90054A389 /* ItemsCollectionViewCell.swift */; };
+		158B7B692836ED160054A389 /* ItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B682836ED160054A389 /* ItemsModel.swift */; };
+		158B7B6B28379EFE0054A389 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B6A28379EFE0054A389 /* ItemsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		158B7B5F2834346A0054A389 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		158B7B61283434790054A389 /* ItemInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoViewController.swift; sourceTree = "<group>"; };
 		158B7B63283434B90054A389 /* ItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewCell.swift; sourceTree = "<group>"; };
+		158B7B682836ED160054A389 /* ItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsModel.swift; sourceTree = "<group>"; };
+		158B7B6A28379EFE0054A389 /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				15665EB92832DA8A00DB512E /* CategoriesModel.swift */,
+				158B7B682836ED160054A389 /* ItemsModel.swift */,
 				15665EBB2832DA8C00DB512E /* CartModel.swift */,
 			);
 			path = Model;
@@ -112,6 +117,7 @@
 			children = (
 				15665EB52832DA8200DB512E /* CategoriesViewModel.swift */,
 				158B7B5D2833B6280054A389 /* SubCategoriesViewModel.swift */,
+				158B7B6A28379EFE0054A389 /* ItemsViewModel.swift */,
 				15665EB72832DA8400DB512E /* CartViewModel.swift */,
 			);
 			path = ViewModel;
@@ -124,9 +130,9 @@
 				15665EAF2832DA6800DB512E /* ViewController.swift */,
 				15665EB32832DA8000DB512E /* CategoriesViewController.swift */,
 				158B7B5B2833B1C70054A389 /* SubCategoriesViewController.swift */,
-				15665EB12832DA7E00DB512E /* CartViewController.swift */,
 				158B7B5F2834346A0054A389 /* ItemsViewController.swift */,
 				158B7B61283434790054A389 /* ItemInfoViewController.swift */,
+				15665EB12832DA7E00DB512E /* CartViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -217,6 +223,7 @@
 				15665E932832C3E400DB512E /* AppDelegate.swift in Sources */,
 				15665EC12832DC9C00DB512E /* CategoriesTableViewCell.swift in Sources */,
 				15665EB42832DA8000DB512E /* CategoriesViewController.swift in Sources */,
+				158B7B6B28379EFE0054A389 /* ItemsViewModel.swift in Sources */,
 				15665EBA2832DA8A00DB512E /* CategoriesModel.swift in Sources */,
 				158B7B5E2833B6280054A389 /* SubCategoriesViewModel.swift in Sources */,
 				15665EB22832DA7E00DB512E /* CartViewController.swift in Sources */,
@@ -228,6 +235,7 @@
 				15665EB02832DA6800DB512E /* ViewController.swift in Sources */,
 				15665E952832C3E400DB512E /* SceneDelegate.swift in Sources */,
 				15665EB62832DA8200DB512E /* CategoriesViewModel.swift in Sources */,
+				158B7B692836ED160054A389 /* ItemsModel.swift in Sources */,
 				158B7B5C2833B1C70054A389 /* SubCategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

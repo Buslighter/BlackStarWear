@@ -16,6 +16,15 @@ class SubCategoriesViewController: UIViewController {
 
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell, let index = subCategoriesTableView.indexPath(for: cell){
+            let model = subCategories?[index.row]
+            if let vc = segue.destination as? ItemsViewController, segue.identifier == "showItems"{
+                vc.id = model?.id.stringValue ?? "0"
+                
+            }
+        }
+    }
 
 }
 extension SubCategoriesViewController:UITableViewDataSource,UITableViewDelegate{
@@ -26,6 +35,7 @@ extension SubCategoriesViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubCategoryCell") as! SubCategoriesTableViewCell
         cell.subCategoryName.text = subCategories?[indexPath.row].name
+        print(subCategories?[indexPath.row].name)
         return cell
     }
     

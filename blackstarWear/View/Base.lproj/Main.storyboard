@@ -143,7 +143,7 @@
                                         <connections>
                                             <outlet property="subCategoryName" destination="2aV-t0-7Lh" id="at0-w6-jYT"/>
                                             <outlet property="subImage" destination="xNo-MC-dSY" id="OVR-r2-ICz"/>
-                                            <segue destination="PGe-1o-h2H" kind="show" id="kS8-47-j5p"/>
+                                            <segue destination="PGe-1o-h2H" kind="show" identifier="showItems" id="kS8-47-j5p"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -207,7 +207,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Wea-Vy-Fj9" customClass="ItemsCollectionViewCell" customModule="blackstarWear" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="itemCell" id="Wea-Vy-Fj9" customClass="ItemsCollectionViewCell" customModule="blackstarWear" customModuleProvider="target">
                                         <rect key="frame" x="56" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bw4-gO-oCO">
@@ -215,7 +215,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <segue destination="6gQ-Ub-RZA" kind="show" id="cUy-zb-eaO"/>
+                                            <segue destination="6gQ-Ub-RZA" kind="show" identifier="showItemInfo" id="cUy-zb-eaO"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -235,12 +235,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ofi-RC-4EJ" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2758" y="106"/>
+            <point key="canvasLocation" x="2757.4766355140187" y="105.61555075593954"/>
         </scene>
-        <!--View Controller-->
+        <!--Item Info View Controller-->
         <scene sceneID="TXD-Gn-lKg">
             <objects>
-                <viewController id="6gQ-Ub-RZA" sceneMemberID="viewController">
+                <viewController id="6gQ-Ub-RZA" customClass="ItemInfoViewController" customModule="blackstarWear" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vo1-Hf-c5h">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
