@@ -28,14 +28,12 @@ class ItemsViewController: UIViewController {
                 self.itemsCollectionView.reloadData()
             })
         })
-        print(id)
-//        print(itemsResults?.items.count)
     }
 
 }
 extension ItemsViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemImages.count ?? 0
+        return itemImages.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

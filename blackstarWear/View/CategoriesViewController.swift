@@ -21,7 +21,7 @@ class CategoriesViewController: UIViewController {
                 self.keys.append(i)
             }
             let urls = self.keys.map{"https://blackstarshop.ru/"+(self.categories?[$0]?.image ?? "0")}
-            self.categoriesVM.getImage(urls: urls , completition: {images in
+            getImage(urls: urls , completition: {images in
                         self.images = images
 
                         DispatchQueue.main.async {
