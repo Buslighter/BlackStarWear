@@ -41,8 +41,6 @@ extension ItemsViewController: UICollectionViewDelegate,UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemsCollectionViewCell
         let key = self.keys[indexPath.row]
-        print(itemsResults?[key]?.name)
-        cell.buyButton.layer.cornerRadius = cell.buyButton.frame.height/2
         cell.descriptionLabel.text = itemsResults?[key]?.name
         cell.priceLabel.text = itemsResults?[key]?.price
         cell.itemImage.image = itemImages[indexPath.row]
@@ -50,9 +48,10 @@ extension ItemsViewController: UICollectionViewDelegate,UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let frameCV = collectionView.frame
-        let w = frameCV.width/4
-        let h = frameCV.height/4
-        return CGSize(width: 128, height:  174)
+        let w = frameCV.width/2
+        let h = frameCV.height/2
+        
+        return CGSize(width: w, height: h)
     }
     
     

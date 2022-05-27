@@ -16,4 +16,8 @@ class ItemsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var itemImage: UIImageView!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        buyButton.layer.cornerRadius = buyButton.frame.height/2
+    }
 }
