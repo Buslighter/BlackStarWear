@@ -5,28 +5,42 @@
 //  Created by gleba on 17.05.2022.
 //
 
-import Foundation
-//class SubCategoriesViewModel{
-//    func getData(completition: @escaping (Results)->Void){
-//        var categoriesResults:Results?
-//        let url = URL(string:"https://blackstarshop.ru/index.php?route=api/v1/categories")
-//        let task = URLSession.shared.dataTask(with: url!){ (data,respone,error) in
-//            if error == nil && data != nil{
-//                let decoder = JSONDecoder()
-//                do{
-//                    let res = try decoder.decode(Results.self, from: data!)
-//                    categoriesResults = res
-//                    print(categoriesResults?.count)
-//                } catch{print("\(error)error happened")}
+import UIKit
+
+func getImage (urls:[String?], completition: @escaping ([UIImage]) -> Void){
+    let images : [UIImage] = urls.map{
+        var image = UIImage(systemName: "nosign")!
+        let url = URL(string: $0 ?? "err")
+        if url != nil{
+        if let data = try? Data(contentsOf: url ?? URL(string: "")!) {
+            image = UIImage(data: data) ?? UIImage(systemName: "nosign")!
+        }
+        } else{
+            image = UIImage(systemName: "nosign")!
+        }
+        return image
+    }
+    DispatchQueue.main.async {
+        completition(images)
+    }
+}
+
+class SubCategoriesViewModel{
+//    func getSubImage (urls:[String?], completition: @escaping ([UIImage]) -> Void){
+//        let images : [UIImage] = urls.map{
+//            var image = UIImage(systemName: "nosign")!
+//            let url = URL(string: $0 ?? "err")
+//            if url != nil{
+//            if let data = try? Data(contentsOf: url ?? URL(string: "")!) {
+//                image = UIImage(data: data) ?? UIImage(systemName: "nosign")!
 //            }
-//            for (key,value) in categoriesResults!{
-//                
+//            } else{
+//                image = UIImage(systemName: "nosign")!
 //            }
-//            
-//            DispatchQueue.main.async {
-//                completition(categoriesResults!)
-//            }
+//            return image
 //        }
-//        task.resume()
+//        DispatchQueue.main.async {
+//            completition(images)
+//        }
 //    }
-//}
+}

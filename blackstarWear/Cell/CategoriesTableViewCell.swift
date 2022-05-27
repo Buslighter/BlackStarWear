@@ -13,6 +13,7 @@ class CategoriesTableViewCell: UITableViewCell {
     @IBOutlet var categoryImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        categoryImage.layer.cornerRadius = categoryImage.frame.size.height/2
         // Initialization code
     }
 

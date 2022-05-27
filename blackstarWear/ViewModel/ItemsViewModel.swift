@@ -8,23 +8,23 @@
 import Foundation
 import UIKit
 class ItemsViewModel{
-    func getData(id: String,completition: @escaping (Items)->Void){
-        var itemsResults:Items?
-        print("done")
+    func getData(id: String,completition: @escaping (ItemResults)->Void){
+        var itemsResults:ItemResults?
         let url = URL(string:"https://blackstarshop.ru/index.php?route=api/v1/products&cat_id=\(id)")
         let task = URLSession.shared.dataTask(with: url!){ (data,respone,error) in
             if error == nil && data != nil{
+                let jsonData = try? JSONSerialization.jsonObject(with: data!, options: .fragmentsAllowed)
+                print(jsonData)
                 let decoder = JSONDecoder()
-                
                 do{
-                    let res = try decoder.decode(Items.self, from: data!)
+                    let res = try decoder.decode(ItemResults.self, from: data!)
                     itemsResults = res
-                    print("Model items count: \(itemsResults?.items.count)")
+                    print("Model items count: \(itemsResults?.count)")
                 } catch{print("\(error)error happened")}
             }
             
             DispatchQueue.main.async {
-                completition(itemsResults!)
+                completition(itemsResults ?? ItemResults())
             }
         }
         task.resume()

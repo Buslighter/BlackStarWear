@@ -9,4 +9,11 @@ import UIKit
 
 class ItemsCollectionViewCell: UICollectionViewCell {
     
+    @IBAction func buyItem(_ sender: Any) {
+    }
+    @IBOutlet var buyButton: UIButton!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var itemImage: UIImageView!
+    
 }

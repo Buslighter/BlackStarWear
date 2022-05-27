@@ -11,6 +11,7 @@ class CategoriesViewController: UIViewController {
     let categoriesVM = CategoriesViewModel()
     var categories: Results?
     var keys = [String]()
+    var images = [UIImage]()
     @IBOutlet var categoriesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,16 +20,33 @@ class CategoriesViewController: UIViewController {
             for i in self.categories!.keys.reversed(){
                 self.keys.append(i)
             }
-            self.categoriesTableView.reloadData()
+            let urls = self.keys.map{"https://blackstarshop.ru/"+(self.categories?[$0]?.image ?? "0")}
+            self.categoriesVM.getImage(urls: urls , completition: {images in
+                        self.images = images
+
+                        DispatchQueue.main.async {
+                        self.categoriesTableView.reloadData()
+                        }
+                    })
         })
-        
+       
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell, let index = categoriesTableView.indexPath(for: cell){
             let key = self.keys[index.row]
-            let model = categories?[key]?.subcategories
+            var model = categories?[key]?.subcategories
             if let vc = segue.destination as? SubCategoriesViewController, segue.identifier == "showSub"{
                 vc.subCategories = model
+                let urls = categories?[key]?.subcategories.map{$0.iconImage
+                    var url = "errorHTTP"
+                    if $0.iconImage != nil{
+                    url = "https://blackstarshop.ru/"+$0.iconImage
+                    } else{
+                        url = "errorHTTP"
+                    }
+                    return url
+                } ?? [""]
+                vc.urls = urls
             }
         }
     }
@@ -43,9 +61,7 @@ extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoriesTableViewCell
         let key = self.keys[indexPath.row]
         cell.categoryName.text = categories?[key]?.name
-        DispatchQueue.main.async {
-//            cell.categoryImage.image = self.parser.getImage(urlStr: self.categories?[key]?.iconImage ?? "")
-        }
+        cell.categoryImage.image = self.images[indexPath.row]
         return cell
     }
     
