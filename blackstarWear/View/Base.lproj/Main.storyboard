@@ -269,6 +269,7 @@
                                             <outlet property="descriptionLabel" destination="USL-Yj-72x" id="fxb-6M-5aE"/>
                                             <outlet property="itemImage" destination="phd-UP-WGx" id="UfX-dt-h2Z"/>
                                             <outlet property="priceLabel" destination="W6f-jf-53k" id="kSW-AJ-CHW"/>
+                                            <segue destination="6gQ-Ub-RZA" kind="show" id="Txl-Db-vVl"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -334,8 +335,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="kS8-47-j5p"/>
-        <segue reference="8X4-SC-uGs"/>
+        <segue reference="R6v-dl-Vs6"/>
+        <segue reference="kTe-bb-eM9"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">

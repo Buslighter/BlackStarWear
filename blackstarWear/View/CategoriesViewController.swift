@@ -34,10 +34,10 @@ class CategoriesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell, let index = categoriesTableView.indexPath(for: cell){
             let key = self.keys[index.row]
-            var model = categories?[key]?.subcategories
+            let model = categories?[key]?.subcategories
             if let vc = segue.destination as? SubCategoriesViewController, segue.identifier == "showSub"{
                 vc.subCategories = model
-                let urls = categories?[key]?.subcategories.map{$0.iconImage
+                let urls = categories?[key]?.subcategories.map{
                     var url = "errorHTTP"
                     if $0.iconImage != nil{
                     url = "https://blackstarshop.ru/"+$0.iconImage
