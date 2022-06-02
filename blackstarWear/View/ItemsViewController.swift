@@ -44,13 +44,12 @@ extension ItemsViewController: UICollectionViewDelegate,UICollectionViewDataSour
         cell.itemImage.image = itemImages[indexPath.row]
         return cell
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let frameCV = collectionView.frame
         let w = frameCV.width/2
         let h = frameCV.height/2
-        
-        return CGSize(width: w, height: h)
+        return CGSize(width: w-10, height: h-10)
     }
-    
     
 }

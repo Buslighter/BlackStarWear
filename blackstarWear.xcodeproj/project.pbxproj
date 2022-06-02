@@ -28,6 +28,7 @@
 		158B7B64283434B90054A389 /* ItemsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B63283434B90054A389 /* ItemsCollectionViewCell.swift */; };
 		158B7B692836ED160054A389 /* ItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B682836ED160054A389 /* ItemsModel.swift */; };
 		158B7B6B28379EFE0054A389 /* ItemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B6A28379EFE0054A389 /* ItemsViewModel.swift */; };
+		158B7B6D2844D0B70054A389 /* CartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B7B6C2844D0B60054A389 /* CartTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		158B7B63283434B90054A389 /* ItemsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsCollectionViewCell.swift; sourceTree = "<group>"; };
 		158B7B682836ED160054A389 /* ItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsModel.swift; sourceTree = "<group>"; };
 		158B7B6A28379EFE0054A389 /* ItemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewModel.swift; sourceTree = "<group>"; };
+		158B7B6C2844D0B60054A389 /* CartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				15665EC02832DC9C00DB512E /* CategoriesTableViewCell.swift */,
 				158B7B592833B1AE0054A389 /* SubCategoriesTableViewCell.swift */,
 				158B7B63283434B90054A389 /* ItemsCollectionViewCell.swift */,
+				158B7B6C2844D0B60054A389 /* CartTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				15665EBC2832DA8C00DB512E /* CartModel.swift in Sources */,
 				15665EB82832DA8500DB512E /* CartViewModel.swift in Sources */,
 				158B7B5A2833B1AE0054A389 /* SubCategoriesTableViewCell.swift in Sources */,
+				158B7B6D2844D0B70054A389 /* CartTableViewCell.swift in Sources */,
 				158B7B602834346A0054A389 /* ItemsViewController.swift in Sources */,
 				15665E952832C3E400DB512E /* SceneDelegate.swift in Sources */,
 				15665EB62832DA8200DB512E /* CategoriesViewModel.swift in Sources */,
