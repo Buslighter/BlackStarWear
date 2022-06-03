@@ -6,6 +6,11 @@
 //
 
 import Foundation
-class CartViewMovel{
-    
+import UIKit
+class CartViewModel{
+    func setBackButtonImage(navigationController:UINavigationController){
+        navigationController.navigationBar.backIndicatorImage = UIImage(named: "multiply")
+        navigationController.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "multiply-back")
+        navigationController.navigationBar.tintColor = UIColor.gray
+    }
 }

@@ -8,14 +8,14 @@
 import UIKit
 
 class CartViewController: UIViewController {
-
+    let cartVM = CartViewModel()
     @IBOutlet var cartTableVIew: UITableView!
     
+    @IBOutlet var buyButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
+        buyButton.layer.cornerRadius = buyButton.frame.height/2
     }
 
 

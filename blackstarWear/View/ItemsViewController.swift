@@ -8,6 +8,8 @@
 import UIKit
 
 class ItemsViewController: UIViewController {
+    
+
     var itemsVM = ItemsViewModel()
     var itemsResults: ItemResults?
     var id: String?
@@ -29,7 +31,36 @@ class ItemsViewController: UIViewController {
             })
         })
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UICollectionViewCell, let index = itemsCollectionView.indexPath(for: cell){
+            let key = self.keys[index.row]
+            let model = itemsResults?[key]
+            var imagesToDelegate = [UIImage]()
+            var urls = [String]()
+            for i in model!.productImages!{
+                urls.append(i.imageURL ?? "")
+            }
+            getImage(urls: urls, completition: { images in
+                imagesToDelegate = images
+            })
+            var sizes = [String]()
+            for i in model!.offers!{
+                sizes.append(i.size)
+            }
+            
+            if let vc = segue.destination as? ItemInfoViewController, segue.identifier == "showItemInfoVC"{
+                let infoItems = vc.infoItemsVM.itemsInfo
+                vc.infoItemsVM.itemsInfo.price = model?.price
+                infoItems.name = model?.name
+                infoItems.colorName = model?.colorName
+                infoItems.productImages = imagesToDelegate
+                infoItems.description = model?.description
+                infoItems.sizes = sizes
+            }
+        }
+    }
+    
+    
 }
 extension ItemsViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,7 +71,7 @@ extension ItemsViewController: UICollectionViewDelegate,UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! ItemsCollectionViewCell
         let key = self.keys[indexPath.row]
         cell.descriptionLabel.text = itemsResults?[key]?.name
-        cell.priceLabel.text = itemsResults?[key]?.price
+        cell.priceLabel.text = makeRightPrice(price: itemsResults?[key]?.price ?? "0.0")
         cell.itemImage.image = itemImages[indexPath.row]
         return cell
     }

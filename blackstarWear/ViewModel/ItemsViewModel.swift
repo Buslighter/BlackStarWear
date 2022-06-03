@@ -5,8 +5,13 @@
 //  Created by gleba on 20.05.2022.
 //
 
-import Foundation
 import UIKit
+
+func makeRightPrice(price: String) -> String{
+    var rightPrice = String(Int(Double(price)!))
+    rightPrice+=" ₽"
+    return rightPrice
+}
 class ItemsViewModel{
     func getData(id: String,completition: @escaping (ItemResults)->Void){
         var itemsResults:ItemResults?
@@ -27,4 +32,5 @@ class ItemsViewModel{
         }
         task.resume()
     }
+
 }

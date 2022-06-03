@@ -19,5 +19,7 @@ class ItemsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         buyButton.layer.cornerRadius = buyButton.frame.height/2
+        buyButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        buyButton.titleLabel?.minimumScaleFactor = 0.5
     }
 }
