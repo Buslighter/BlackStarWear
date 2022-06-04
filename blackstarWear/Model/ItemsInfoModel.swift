@@ -7,7 +7,7 @@
 
 import UIKit
 class ItemsInfoModel{
-    var productImages: [UIImage]?
+    var productImagesUrls: [String]?
     var name: String?
     var price: String?
     var description: String?

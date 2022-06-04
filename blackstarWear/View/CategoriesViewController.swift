@@ -20,7 +20,7 @@ class CategoriesViewController: UIViewController {
             for i in self.categories!.keys.reversed(){
                 self.keys.append(i)
             }
-            let urls = self.keys.map{"https://blackstarshop.ru/"+(self.categories?[$0]?.image ?? "0")}
+            let urls = self.keys.map{self.categories?[$0]?.image ?? "0"}
             getImage(urls: urls , completition: {images in
                         self.images = images
 
@@ -40,7 +40,7 @@ class CategoriesViewController: UIViewController {
                 let urls = categories?[key]?.subcategories.map{
                     var url = "errorHTTP"
                     if $0.iconImage != nil{
-                    url = "https://blackstarshop.ru/"+$0.iconImage
+                    url = $0.iconImage
                     } else{
                         url = "errorHTTP"
                     }

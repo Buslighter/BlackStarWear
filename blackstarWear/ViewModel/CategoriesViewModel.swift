@@ -10,7 +10,7 @@ import UIKit
 func getImage (urls:[String?], completition: @escaping ([UIImage]) -> Void){
     let images : [UIImage] = urls.map{
         var image = UIImage(systemName: "nosign")!
-        let url = URL(string: $0 ?? "err")
+        let url = URL(string: "https://blackstarshop.ru/" + ($0 ?? "err"))
         if url != nil{
         if let data = try? Data(contentsOf: url ?? URL(string: "")!) {
             image = UIImage(data: data) ?? UIImage(systemName: "nosign")!

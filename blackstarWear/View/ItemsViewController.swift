@@ -18,13 +18,13 @@ class ItemsViewController: UIViewController {
     @IBOutlet var itemsCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemsVM.getData(id: id ?? "0", completition: { items in
+        itemsVM.getData(id: id ?? "53", completition: { items in
             self.itemsResults = items
             self.itemsCollectionView.reloadData()
             for i in self.itemsResults!.keys{
                 self.keys.append(i)
             }
-            let urls = self.keys.map{"https://blackstarshop.ru/"+(self.itemsResults?[$0]?.mainImage ?? "0")}
+            let urls = self.keys.map{self.itemsResults?[$0]?.mainImage ?? "0"}
             getImage(urls: urls, completition: { itemImages in
                 self.itemImages = itemImages
                 self.itemsCollectionView.reloadData()
@@ -35,14 +35,11 @@ class ItemsViewController: UIViewController {
         if let cell = sender as? UICollectionViewCell, let index = itemsCollectionView.indexPath(for: cell){
             let key = self.keys[index.row]
             let model = itemsResults?[key]
-            var imagesToDelegate = [UIImage]()
             var urls = [String]()
             for i in model!.productImages!{
                 urls.append(i.imageURL ?? "")
             }
-            getImage(urls: urls, completition: { images in
-                imagesToDelegate = images
-            })
+            if urls==[]{urls.append(model?.mainImage ?? "")}
             var sizes = [String]()
             for i in model!.offers!{
                 sizes.append(i.size)
@@ -53,7 +50,7 @@ class ItemsViewController: UIViewController {
                 vc.infoItemsVM.itemsInfo.price = model?.price
                 infoItems.name = model?.name
                 infoItems.colorName = model?.colorName
-                infoItems.productImages = imagesToDelegate
+                infoItems.productImagesUrls = urls
                 infoItems.description = model?.description
                 infoItems.sizes = sizes
             }

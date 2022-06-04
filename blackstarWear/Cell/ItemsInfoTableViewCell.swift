@@ -24,3 +24,12 @@ class ItemsInfoTableViewCell: UITableViewCell {
     }
 
 }
+
+class ItemsInfoImageCell: UICollectionViewCell {
+    
+    @IBOutlet var image: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+}
