@@ -123,8 +123,8 @@
 			children = (
 				15665EB92832DA8A00DB512E /* CategoriesModel.swift */,
 				158B7B682836ED160054A389 /* ItemsModel.swift */,
-				15665EBB2832DA8C00DB512E /* CartModel.swift */,
 				15A330DD284AA53200A0A0A9 /* ItemsInfoModel.swift */,
+				15665EBB2832DA8C00DB512E /* CartModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,7 +172,6 @@
 				F612CAD11938A6E4A50537C0 /* Pods-blackstarWear.debug.xcconfig */,
 				13692363A96C7B19CD6E05D6 /* Pods-blackstarWear.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

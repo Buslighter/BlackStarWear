@@ -26,21 +26,21 @@ func getImage (urls:[String?], completition: @escaping ([UIImage]) -> Void){
 }
 
 class CategoriesViewModel{
-    func getData(completition: @escaping (Results)->Void){
-        var categoriesResults:Results?
+    func getData(completition: @escaping (CategoriesResults)->Void){
+        var categoriesResults:CategoriesResults?
         let url = URL(string:"https://blackstarshop.ru/index.php?route=api/v1/categories")
         let task = URLSession.shared.dataTask(with: url!){ (data,respone,error) in
             if error == nil && data != nil{
 //                let jsonData = try? JSONSerialization.jsonObject(with: data!, options: .fragmentsAllowed)
                 let decoder = JSONDecoder()
                 do{
-                    let res = try decoder.decode(Results.self, from: data!)
+                    let res = try decoder.decode(CategoriesResults.self, from: data!)
                     categoriesResults = res
                 } catch{print("\(error)error happened")}
             }
 
             DispatchQueue.main.async {
-                completition(categoriesResults ?? Results())
+                completition(categoriesResults ?? CategoriesResults())
             }
         }
         task.resume()

@@ -9,9 +9,10 @@ import UIKit
 
 class CategoriesViewController: UIViewController {
     let categoriesVM = CategoriesViewModel()
-    var categories: Results?
+    var categories: CategoriesResults?
     var keys = [String]()
     var images = [UIImage]()
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var categoriesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,9 @@ class CategoriesViewController: UIViewController {
             let urls = self.keys.map{self.categories?[$0]?.image ?? "0"}
             getImage(urls: urls , completition: {images in
                         self.images = images
-
                         DispatchQueue.main.async {
-                        self.categoriesTableView.reloadData()
+                            self.activityIndicator.isHidden = true
+                            self.categoriesTableView.reloadData()
                         }
                     })
         })
@@ -63,6 +64,9 @@ extension CategoriesViewController:UITableViewDelegate,UITableViewDataSource{
         cell.categoryName.text = categories?[key]?.name
         cell.categoryImage.image = self.images[indexPath.row]
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     

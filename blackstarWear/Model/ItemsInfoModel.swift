@@ -13,4 +13,5 @@ class ItemsInfoModel{
     var description: String?
     var colorName: String?
     var sizes: [String]?
+    var currentSize: String?
 }

@@ -6,10 +6,17 @@
 //
 
 import UIKit
-
+protocol BuyItemDelegate: AnyObject{
+    func buyItem(index: Int)
+}
 class ItemsCollectionViewCell: UICollectionViewCell {
-    
+    var delegate: BuyItemDelegate?
+    var itemsIndex = 0
     @IBAction func buyItem(_ sender: Any) {
+        delegate?.buyItem(index: self.itemsIndex)
+    }
+    func getInfo(index: Int){
+        self.itemsIndex = index
     }
     @IBOutlet var buyButton: UIButton!
     @IBOutlet var priceLabel: UILabel!

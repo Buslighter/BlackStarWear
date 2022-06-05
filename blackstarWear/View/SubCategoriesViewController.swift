@@ -8,6 +8,7 @@
 import UIKit
 
 class SubCategoriesViewController: UIViewController {
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     var subCategories: [Subcategory]?
     let subCategoriesVM = SubCategoriesViewModel()
     var urls = [String]()
@@ -15,18 +16,18 @@ class SubCategoriesViewController: UIViewController {
     @IBOutlet var subCategoriesTableView: UITableView!
     override func viewDidLoad() {
         DispatchQueue.main.async {
-        
+            
             getImage(urls: self.urls, completition: { subImages in
-            self.subImages = subImages
-                
+                self.subImages = subImages
+                self.activityIndicator.isHidden = true
                 self.subCategoriesTableView.reloadData()
                 
-        })
+            })
         }
         super.viewDidLoad()
-
+        
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell, let index = subCategoriesTableView.indexPath(for: cell){
             let model = subCategories?[index.row]
@@ -35,7 +36,7 @@ class SubCategoriesViewController: UIViewController {
             }
         }
     }
-
+    
 }
 extension SubCategoriesViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +49,7 @@ extension SubCategoriesViewController:UITableViewDataSource,UITableViewDelegate{
         cell.subImage.image = self.subImages[indexPath.row]
         return cell
     }
-     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }

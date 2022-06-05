@@ -78,7 +78,7 @@ enum TypeEnum: String, Codable {
     case collection = "Collection"
 }
 
-typealias Results = [String: CategoriesModel]
+typealias CategoriesResults = [String: CategoriesModel]
 
 
 

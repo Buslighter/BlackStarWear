@@ -9,13 +9,13 @@ import UIKit
 
 class ItemInfoViewController: UIViewController, CALayerDelegate {
     @IBOutlet var sizeView: UIView!
-    let infoItemsVM = ItemsInfoVM()
+    var infoItemsVM = ItemsInfoVM()
     var images = [UIImage]()
     var indexPathForSelectedCell = IndexPath()
     var counter = 0
+    var prevImageInd = 0
     @IBAction func chooseSize(_ sender: Any) {
         UIView.animate(withDuration: 0.3){
-//            self.addToCartButton.layer.cornerRadius = self.infoItemsVM.roundButton(button: self.addToCartButton)
             self.blackoutScreen.alpha = 0.6
             self.sizeView.alpha = 0.97
             self.blackoutScreen.isHidden = false
@@ -27,7 +27,6 @@ class ItemInfoViewController: UIViewController, CALayerDelegate {
     @IBOutlet var itemStatsSelectionTableView: UITableView!
     @IBOutlet var blackoutScreen: UIView!
     @IBAction func addToCartAction(_ sender: Any) {
-       let cell = itemStatsSelectionTableView.dequeueReusableCell(withIdentifier: "ItemInfoCell", for: indexPathForSelectedCell) as! ItemsInfoTableViewCell
         UIView.animate(withDuration: 0.3){
             self.blackoutScreen.alpha = 0
             self.sizeView.alpha = 0
@@ -36,11 +35,9 @@ class ItemInfoViewController: UIViewController, CALayerDelegate {
             self.blackoutScreen.isHidden = true
             self.sizeView.isHidden = true
         })
+        infoItemsVM.addRealm(info: infoItemsVM, image: images[0])
         indexPathForSelectedCell = IndexPath()
         itemStatsSelectionTableView.reloadData()
-    }
-    @IBAction func pageControl(_ sender: Any) {
-        pageView.currentPage+=1
     }
     @IBOutlet var pageView: UIPageControl!
     @IBOutlet var itemDescription: UILabel!
@@ -50,11 +47,11 @@ class ItemInfoViewController: UIViewController, CALayerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addToCartButton.isEnabled = false
         imagesCollectionView.contentInsetAdjustmentBehavior = .never
         let model = infoItemsVM.itemsInfo
         getImage(urls: model.productImagesUrls ?? [""], completition: { images in
             self.images = images
-            print(self.images.count)
             self.pageView.numberOfPages = images.count
             self.pageView.currentPage = 0
             self.imagesCollectionView.reloadData()
@@ -62,11 +59,9 @@ class ItemInfoViewController: UIViewController, CALayerDelegate {
         itemDescription.text = model.description
         itemName.text = model.name
         itemPrice.text = makeRightPrice(price: model.price ?? "0.0")
-
-//        blackoutScreen.isHidden = true
-//        chooseSizeButton.layer.cornerRadius = infoItemsVM.roundButton(button: chooseSizeButton)
     }
     
+ 
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch: UITouch? = touches.first
@@ -79,10 +74,17 @@ class ItemInfoViewController: UIViewController, CALayerDelegate {
                 self.blackoutScreen.isHidden = true
                 self.sizeView.isHidden = true
             })
+            addToCartButton.isEnabled = false
             indexPathForSelectedCell = IndexPath()
             itemStatsSelectionTableView.reloadData()
         }
     }
+    // MARK: Change page control items
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageView.currentPage = Int(scrollView.contentOffset.x)/Int(scrollView.frame.width)
+    }
+    
+    
     
 }
 extension ItemInfoViewController: UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -109,6 +111,7 @@ extension ItemInfoViewController: UITableViewDelegate,UITableViewDataSource,UICo
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemInfoCell", for: indexPath) as! ItemsInfoTableViewCell
         if indexPathForSelectedCell==indexPath{
                 cell.checkMarkImage.alpha = 1.0
+            infoItemsVM.itemsInfo.currentSize = infoItemsVM.itemsInfo.sizes?[indexPath.row]
             }else{
                 cell.checkMarkImage.alpha = 0.0
             }
@@ -118,6 +121,7 @@ extension ItemInfoViewController: UITableViewDelegate,UITableViewDataSource,UICo
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        self.addToCartButton.isEnabled = true
         self.indexPathForSelectedCell = indexPath
         tableView.reloadData()
     }
